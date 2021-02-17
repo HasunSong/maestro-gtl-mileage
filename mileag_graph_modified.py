@@ -31,12 +31,13 @@ def get_pie(e, init_mileage, point_list):
     return pie_i, pie_f
 
 ########################### 여기만 조절하면 됨 ##########################
-INIT_MILEAGE = 100  # 초기에 각 플레이어에게 주어지는 마일리지
+INIT_MILEAGE = 50  # 초기에 각 플레이어에게 주어지는 마일리지
 POINT_LIST = [0]  # POINT_LIST[k] = k라운드 보상 포인트
 # 지수적으로 증가하는 보상
-INCREASE_RATE = 1.1
+POINT0 = 20
+INCREASE_RATE = 1.3
 for k in range(1, 100):
-    POINT_LIST.append(100 * INCREASE_RATE**(k-1))
+    POINT_LIST.append(POINT0 * INCREASE_RATE**(k-1))
 E_RANGE = 8  # 그래프할 E(e) 범위, 0~E_RANGE
 ########################################################################
 
