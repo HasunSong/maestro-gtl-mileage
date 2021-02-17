@@ -24,11 +24,11 @@ def end_round(e, init_mileage):
 
 
 # 각 전략가 집단이 채역가는 총 파이 리턴
-def get_pi(e, init_mileage, point_list):
+def get_pie(e, init_mileage, point_list):
     round_i, round_f = end_round(e, init_mileage)
-    pi_i = sum(point_list[:round_i+1])
-    pi_f = sum(point_list[round_i+1:round_f+1])
-    return pi_i, pi_f
+    pie_i = sum(point_list[:round_i+1])
+    pie_f = sum(point_list[round_i+1:round_f+1])
+    return pie_i, pie_f
 
 ########################### 여기만 조절하면 됨 ##########################
 INIT_MILEAGE = 100  # 초기에 각 플레이어에게 주어지는 마일리지
@@ -42,14 +42,14 @@ E_RANGE = 8  # 그래프할 E(e) 범위, 0~E_RANGE
 
 e_list = np.arange(0, E_RANGE, 0.01).tolist()
 round_i_list, round_f_list = [], []
-pi_i_list, pi_f_list = [], []
+pie_i_list, pie_f_list = [], []
 for e in e_list:
     ri, rf = end_round(e, INIT_MILEAGE)
     round_i_list.append(ri)
     round_f_list.append(rf)
-    pi, pf = get_pi(e, INIT_MILEAGE, POINT_LIST)
-    pi_i_list.append(pi)
-    pi_f_list.append(pf)
+    pi, pf = get_pie(e, INIT_MILEAGE, POINT_LIST)
+    pie_i_list.append(pi)
+    pie_f_list.append(pf)
 
 
 plt.figure()
@@ -61,10 +61,10 @@ plt.plot(e_list, round_i_list, color="red")
 plt.plot(e_list, round_f_list, color="blue")
 
 plt.subplot(1,2,2)
-plt.title("E(e) - (Total Pi) Curve\nRed: i, Blue: f, Black: total")
+plt.title("E(e) - (Total Pie) Curve\nRed: i, Blue: f, Black: total")
 plt.xlim([0, E_RANGE])
-plt.plot(e_list, pi_i_list, color="red")
-plt.plot(e_list, pi_f_list, color="blue")
-plt.plot(e_list, list(np.array(pi_i_list)+np.array(pi_f_list)), color="black")
+plt.plot(e_list, pie_i_list, color="red")
+plt.plot(e_list, pie_f_list, color="blue")
+plt.plot(e_list, list(np.array(pie_i_list)+np.array(pie_f_list)), color="black")
 
 plt.show()
