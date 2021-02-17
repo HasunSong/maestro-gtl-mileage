@@ -37,9 +37,10 @@ POINT_LIST = [0]  # POINT_LIST[k] = k라운드 보상 포인트
 INCREASE_RATE = 1.1
 for k in range(1, 100):
     POINT_LIST.append(100 * INCREASE_RATE**(k-1))
+E_RANGE = 8  # 그래프할 E(e) 범위, 0~E_RANGE
 ########################################################################
 
-e_list = np.arange(0, 10, 0.01).tolist()
+e_list = np.arange(0, E_RANGE, 0.01).tolist()
 round_i_list, round_f_list = [], []
 pi_i_list, pi_f_list = [], []
 for e in e_list:
@@ -55,14 +56,13 @@ plt.figure()
 
 plt.subplot(1,2,1)
 plt.title("E(e) - (End Round) Curve\nRed: i, Blue: f")
-plt.xlim([0, 10])
-plt.ylim([0, 20])
+plt.xlim([0, E_RANGE])
 plt.plot(e_list, round_i_list, color="red")
 plt.plot(e_list, round_f_list, color="blue")
 
 plt.subplot(1,2,2)
 plt.title("E(e) - (Total Pi) Curve\nRed: i, Blue: f, Black: total")
-plt.xlim([0, 10])
+plt.xlim([0, E_RANGE])
 plt.plot(e_list, pi_i_list, color="red")
 plt.plot(e_list, pi_f_list, color="blue")
 plt.plot(e_list, list(np.array(pi_i_list)+np.array(pi_f_list)), color="black")
